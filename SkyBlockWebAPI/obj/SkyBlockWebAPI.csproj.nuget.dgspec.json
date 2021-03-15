@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {}
+  },
+  "projects": {
+    "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
+        "projectName": "SkyBlockWebAPI",
+        "projectPath": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
+        "packagesPath": "C:\\Users\\Edmond Vass\\.nuget\\packages\\",
+        "outputPath": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Edmond Vass\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "MongoDB.Driver.GridFS": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
