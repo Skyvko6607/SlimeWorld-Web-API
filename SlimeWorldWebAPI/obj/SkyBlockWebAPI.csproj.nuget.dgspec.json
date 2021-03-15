@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {}
+    "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {}
   },
   "projects": {
-    "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {
+    "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
+        "projectUniqueName": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
         "projectName": "SkyBlockWebAPI",
-        "projectPath": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
+        "projectPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
         "packagesPath": "C:\\Users\\Edmond Vass\\.nuget\\packages\\",
-        "outputPath": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\obj\\",
+        "outputPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Edmond Vass\\AppData\\Roaming\\NuGet\\NuGet.Config",

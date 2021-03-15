@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NqUSf5x3N0Wa1X/T3zwLZ1DzcVPVlYLUyd5OoWU55QCpeBpIXxuVMsHUrVuN+SXXQvl6kGIUHDS/F3DWxb7Azg==",
+  "dgSpecHash": "8utiuEQiGTraT2Sc5cbk7YLI3Wv4+oPcFlo0jQ6H93oi1L5cdOQqHczWPkpXLZFjhBMBWvbLln9SRF7pSqs7eg==",
   "success": true,
-  "projectFilePath": "F:\\ASP.NET\\WebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI\\SkyBlockWebAPI.csproj",
+  "projectFilePath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SlimeWorldWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Edmond Vass\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\Edmond Vass\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.0\\microsoft.aspnetcore.authentication.jwtbearer.3.1.0.nupkg.sha512",
