@@ -189,3 +189,7 @@ Response: 200 OK (boolean in number)
 1 if locked
 0 if not
 ```
+
+# Planned features
+* Expand to multiple databases (MySQL and Local file)
+* Release a plugin which utilizes this application
