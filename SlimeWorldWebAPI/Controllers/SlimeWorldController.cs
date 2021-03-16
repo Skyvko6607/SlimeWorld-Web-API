@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SkyBlockWebAPI.DTO;
-using SkyBlockWebAPI.Filters;
-using SkyBlockWebAPI.Services.Interfaces;
+using SlimeWorldWebAPI.DTO;
+using SlimeWorldWebAPI.Filters;
+using SlimeWorldWebAPI.Services.Interfaces;
 
-namespace SkyBlockWebAPI.Controllers
+namespace SlimeWorldWebAPI.Controllers
 {
     [TypeFilter(typeof(ApiTokenFilter))]
     public class SlimeWorldController : ControllerBase

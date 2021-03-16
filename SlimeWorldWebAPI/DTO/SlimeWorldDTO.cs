@@ -1,4 +1,4 @@
-﻿namespace SkyBlockWebAPI.DTO
+﻿namespace SlimeWorldWebAPI.DTO
 {
     public class SlimeWorldDTO
     {

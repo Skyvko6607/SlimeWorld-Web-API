@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SkyBlockWebAPI.Configs;
+using SlimeWorldWebAPI.Configs;
 
-namespace SkyBlockWebAPI.DbContexts
+namespace SlimeWorldWebAPI.DbContexts
 {
     public class GlobalDbContext
     {

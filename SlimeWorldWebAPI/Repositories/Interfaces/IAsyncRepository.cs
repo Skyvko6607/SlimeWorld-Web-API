@@ -1,6 +1,6 @@
-﻿using SkyBlockWebAPI.Models;
+﻿using SlimeWorldWebAPI.Models;
 
-namespace SkyBlockWebAPI.Repositories.Interfaces
+namespace SlimeWorldWebAPI.Repositories.Interfaces
 {
     public interface IAsyncRepository<T> where T: BaseEntity
     {

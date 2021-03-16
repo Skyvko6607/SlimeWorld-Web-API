@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
-using SkyBlockWebAPI.Models;
+using SlimeWorldWebAPI.Models;
 
-namespace SkyBlockWebAPI.DataObjects
+namespace SlimeWorldWebAPI.DataObjects
 {
     public class SlimeWorldDataObject
     {

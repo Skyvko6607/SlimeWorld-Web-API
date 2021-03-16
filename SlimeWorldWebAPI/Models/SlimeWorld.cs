@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SkyBlockWebAPI.Models
+namespace SlimeWorldWebAPI.Models
 {
     public class SlimeWorld : BaseEntity
     {

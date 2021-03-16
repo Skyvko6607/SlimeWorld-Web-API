@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SkyBlockWebAPI.Exceptions
+namespace SlimeWorldWebAPI.Exceptions
 {
     public class UnknownWorldException : Exception
     {

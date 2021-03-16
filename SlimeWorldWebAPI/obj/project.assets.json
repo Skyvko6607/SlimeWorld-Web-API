@@ -4216,11 +4216,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SlimeWorldWebAPI.csproj",
+      "projectUniqueName": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SlimeWorldWebAPI\\SlimeWorldWebAPI.csproj",
       "projectName": "SlimeWorldWebAPI",
-      "projectPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\SlimeWorldWebAPI.csproj",
+      "projectPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SlimeWorldWebAPI\\SlimeWorldWebAPI.csproj",
       "packagesPath": "C:\\Users\\Edmond Vass\\.nuget\\packages\\",
-      "outputPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SkyBlockWebAPI\\obj\\",
+      "outputPath": "F:\\ASP.NET\\WebAPI\\SlimeWorldWebAPI\\SlimeWorldWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Edmond Vass\\AppData\\Roaming\\NuGet\\NuGet.Config",

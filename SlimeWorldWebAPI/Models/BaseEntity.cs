@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 
-namespace SkyBlockWebAPI.Models
+namespace SlimeWorldWebAPI.Models
 {
     public class BaseEntity
     {

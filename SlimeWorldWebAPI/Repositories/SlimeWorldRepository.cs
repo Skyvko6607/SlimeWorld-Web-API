@@ -9,15 +9,14 @@ using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-using SkyBlockWebAPI.Configs;
-using SkyBlockWebAPI.DataObjects;
-using SkyBlockWebAPI.DbContexts;
-using SkyBlockWebAPI.DTO;
-using SkyBlockWebAPI.Exceptions;
-using SkyBlockWebAPI.Models;
-using SkyBlockWebAPI.Repositories.Interfaces;
+using SlimeWorldWebAPI.Configs;
+using SlimeWorldWebAPI.DataObjects;
+using SlimeWorldWebAPI.DbContexts;
+using SlimeWorldWebAPI.Exceptions;
+using SlimeWorldWebAPI.Models;
+using SlimeWorldWebAPI.Repositories.Interfaces;
 
-namespace SkyBlockWebAPI.Repositories
+namespace SlimeWorldWebAPI.Repositories
 {
     public class SlimeWorldRepository : AsyncRepository<SlimeWorld>, ISlimeWorldRepository
     {
@@ -353,7 +352,7 @@ namespace SkyBlockWebAPI.Repositories
                                 new BsonElement("locked", slimeWorld.Locked)
                             });
                         }
-                        else if (Stopwatch.GetTimestamp() - slimeWorld.Locked > _appSettings.Value.WorldMaxLockTime)
+                        else if (DateTime.Now.Millisecond - slimeWorld.Locked > _appSettings.Value.WorldMaxLockTime)
                         {
                             await DbContext.UpdateAsync(collection, new BsonDocument("name", slimeWorld.Name),
                                 new BsonDocument("name", slimeWorld.Name)

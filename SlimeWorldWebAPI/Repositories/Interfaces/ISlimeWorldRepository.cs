@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
-using SkyBlockWebAPI.Models;
+using SlimeWorldWebAPI.Models;
 
-namespace SkyBlockWebAPI.Repositories.Interfaces
+namespace SlimeWorldWebAPI.Repositories.Interfaces
 {
     public interface ISlimeWorldRepository : IAsyncRepository<SlimeWorld>
     {

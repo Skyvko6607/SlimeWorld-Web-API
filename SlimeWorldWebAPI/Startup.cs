@@ -1,26 +1,22 @@
-using System;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SkyBlockWebAPI.Configs;
-using SkyBlockWebAPI.DataObjects;
-using SkyBlockWebAPI.DbContexts;
-using SkyBlockWebAPI.Repositories;
-using SkyBlockWebAPI.Repositories.Interfaces;
-using SkyBlockWebAPI.Services;
-using SkyBlockWebAPI.Services.Interfaces;
-using SkyBlockWebAPI.Tasks;
+using SlimeWorldWebAPI.Configs;
+using SlimeWorldWebAPI.DataObjects;
+using SlimeWorldWebAPI.DbContexts;
+using SlimeWorldWebAPI.Repositories;
+using SlimeWorldWebAPI.Repositories.Interfaces;
+using SlimeWorldWebAPI.Services;
+using SlimeWorldWebAPI.Services.Interfaces;
+using SlimeWorldWebAPI.Tasks;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace SkyBlockWebAPI
+namespace SlimeWorldWebAPI
 {
     public class Startup
     {

@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using SkyBlockWebAPI.Configs;
+using SlimeWorldWebAPI.Configs;
 
-namespace SkyBlockWebAPI.Filters
+namespace SlimeWorldWebAPI.Filters
 {
     public class ApiTokenFilter : IAuthorizationFilter
     {

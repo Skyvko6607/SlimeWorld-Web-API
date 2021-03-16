@@ -1,4 +1,4 @@
-﻿namespace SkyBlockWebAPI.Configs
+﻿namespace SlimeWorldWebAPI.Configs
 {
     public class AppSettings
     {

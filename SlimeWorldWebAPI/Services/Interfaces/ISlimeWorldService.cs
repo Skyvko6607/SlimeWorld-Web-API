@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SkyBlockWebAPI.DTO;
+using SlimeWorldWebAPI.DTO;
 
-namespace SkyBlockWebAPI.Services.Interfaces
+namespace SlimeWorldWebAPI.Services.Interfaces
 {
     public interface ISlimeWorldService
     {

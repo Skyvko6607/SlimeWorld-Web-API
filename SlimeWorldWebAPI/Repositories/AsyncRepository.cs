@@ -1,11 +1,11 @@
 ﻿using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SkyBlockWebAPI.DbContexts;
-using SkyBlockWebAPI.Models;
-using SkyBlockWebAPI.Repositories.Interfaces;
+using SlimeWorldWebAPI.DbContexts;
+using SlimeWorldWebAPI.Models;
+using SlimeWorldWebAPI.Repositories.Interfaces;
 
-namespace SkyBlockWebAPI.Repositories
+namespace SlimeWorldWebAPI.Repositories
 {
     public abstract class AsyncRepository<T> : IAsyncRepository<T> where T: BaseEntity
     {

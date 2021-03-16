@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SkyBlockWebAPI.Repositories.Interfaces;
+using SlimeWorldWebAPI.Repositories.Interfaces;
 
-namespace SkyBlockWebAPI.Tasks
+namespace SlimeWorldWebAPI.Tasks
 {
     public class SlimeWorldTask
     {
