@@ -75,3 +75,121 @@ Authorization: ApiToken <your api token>
 # How to use this on your server?
 Well, at this time there is no custom loader written which is available for you, so it will be your task or someone else's to write one.
 I have written one, but that will be available later in public. _Look out for that._
+
+# Endpoints
+## Get World By Name
+```
+Endpoint: /getWorldByName
+Query parameters: worldName (string)
+Method: GET
+Usage: http://api.example.com/getWorldByName?worldName=exampleworld
+Response format: 200 OK (json):
+{
+  "name": "exampleworld",
+  "worldBytes": "sQsJBv//AAAAAgABAwAAAV0AAFsrKLUv/WArWp0KAKKNMTFwa6MA+Nb/////////jQbSM3tZO2Hko/zi1h2icbHY2MQSmhwgfMGSkYhbmkwiu6UP3weCIOg4Hg7lanfphmE1M6B3mxloT6NyF7p32ouBhX9NVq0FxQIKHoTHT78QDMPQ8ZyvtjGfIZdqnaUZ1UZER5qsbpj0JoZAwr/VpkKXmTajnLaZTDfTeoZ8RPA7Ks7/82MoComqZLQkxcG6PEyxYpBWvEhECIArxsoiLYmaYmTJFcrBT02S5ZrAyIbqihWTJR8NfTEgAAOKAKg0DgAU0PUvy+5U+PT4lPEk6WmEG7CK9+ta7DYVibqLqG6oLK5f2XztZpONobc07sgI2N5KlqohEU6CpkJcIw0gPRVwgQcwRFWG60JcG4JefuArvb5Bq2FzaeWnpv7wX1UAY8h7AO/Cx99/98H/FW7+r39SlqqI7loJirqs9FSVIip0AgAAABoAAAARKLUv/SARiQAACgAACQAFdGlsZXMKAAAAAAAAAAAAcgAAAIMotS/9IINNAwCiRhYbgLkZAEAKubeyfTsUe1QwAAsYZmB6CGMMWekHny0Lq4waAuOKzWUlhNxoy1gcRTkJDvhHJH8CNakY8nFsaWMoHQbfsc3lIEKTdlPwrRh1fExPW6rSUjg+BgQAIAiLIgNMEppr6gEAAAAZAAAAECi1L/0gEIEAAAoAAAkABG1hcHMKAAAAAAA=",
+  "locked": 0
+}
+⚠️ worldBytes is Base64 encoded!
+```
+## Get World Names
+```
+Endpoint: /getWorldNames
+Method: GET
+Usage: http://api.example.com/getWorldNames
+Response format: 200 OK (json):
+[
+  "exampleworld",
+  "exampleworld2",
+  "exampleworld3"
+]
+```
+## Get Biggest Worlds
+```
+Endpoint: /getBiggestWorlds
+Method: GET
+Usage: http://api.example.com/getBiggestWorlds
+Sorted: true (Highest value -> Lowest value)
+Response format: 200 OK (json):
+[
+  {
+    "Key": "exampleworld",
+    "Value": 840708
+  },
+  {
+    "Key": "exampleworld2",
+    "Value": 4210
+  },
+  {
+    "Key": "exampleworld3",
+    "Value": 580
+  }
+]
+```
+## Create (Insert) World
+```
+Endpoint: /insertWorld
+Method: POST
+Usage: http://api.example.com/insertWorld
+Body type: JSON
+Body format:
+{
+  "name": "exampleworld4",
+  "worldBytes": "sQsJBv//AAAAAgABAwAAAV0AAFsrKLUv/WArWp0KAKKNMTFwa6MA+Nb/////////jQbSM3tZO2Hko/zi1h2icbHY2MQSmhwgfMGSkYhbmkwiu6UP3weCIOg4Hg7lanfphmE1M6B3mxloT6NyF7p32ouBhX9NVq0FxQIKHoTHT78QDMPQ8ZyvtjGfIZdqnaUZ1UZER5qsbpj0JoZAwr/VpkKXmTajnLaZTDfTeoZ8RPA7Ks7/82MoComqZLQkxcG6PEyxYpBWvEhECIArxsoiLYmaYmTJFcrBT02S5ZrAyIbqihWTJR8NfTEgAAOKAKg0DgAU0PUvy+5U+PT4lPEk6WmEG7CK9+ta7DYVibqLqG6oLK5f2XztZpONobc07sgI2N5KlqohEU6CpkJcIw0gPRVwgQcwRFWG60JcG4JefuArvb5Bq2FzaeWnpv7wX1UAY8h7AO/Cx99/98H/FW7+r39SlqqI7loJirqs9FSVIip0AgAAABoAAAARKLUv/SARiQAACgAACQAFdGlsZXMKAAAAAAAAAAAAcgAAAIMotS/9IINNAwCiRhYbgLkZAEAKubeyfTsUe1QwAAsYZmB6CGMMWekHny0Lq4waAuOKzWUlhNxoy1gcRTkJDvhHJH8CNakY8nFsaWMoHQbfsc3lIEKTdlPwrRh1fExPW6rSUjg+BgQAIAiLIgNMEppr6gEAAAAZAAAAECi1L/0gEIEAAAoAAAkABG1hcHMKAAAAAAA=",
+  "locked": 0
+}
+⚠️ worldBytes is Base64 encoded!
+Response: 200 OK
+```
+## Save World
+```
+Endpoint: /saveWorld
+Method: POST
+Usage: http://api.example.com/saveWorld
+Body type: JSON
+Body format:
+{
+  "name": "exampleworld2",
+  "worldBytes": "sQsJBv//AAAAAgABAwAAAV0AAFsrKLUv/WArWp0KAKKNMTFwa6MA+Nb/////////jQbSM3tZO2Hko/zi1h2icbHY2MQSmhwgfMGSkYhbmkwiu6UP3weCIOg4Hg7lanfphmE1M6B3mxloT6NyF7p32ouBhX9NVq0FxQIKHoTHT78QDMPQ8ZyvtjGfIZdqnaUZ1UZER5qsbpj0JoZAwr/VpkKXmTajnLaZTDfTeoZ8RPA7Ks7/82MoComqZLQkxcG6PEyxYpBWvEhECIArxsoiLYmaYmTJFcrBT02S5ZrAyIbqihWTJR8NfTEgAAOKAKg0DgAU0PUvy+5U+PT4lPEk6WmEG7CK9+ta7DYVibqLqG6oLK5f2XztZpONobc07sgI2N5KlqohEU6CpkJcIw0gPRVwgQcwRFWG60JcG4JefuArvb5Bq2FzaeWnpv7wX1UAY8h7AO/Cx99/98H/FW7+r39SlqqI7loJirqs9FSVIip0AgAAABoAAAARKLUv/SARiQAACgAACQAFdGlsZXMKAAAAAAAAAAAAcgAAAIMotS/9IINNAwCiRhYbgLkZAEAKubeyfTsUe1QwAAsYZmB6CGMMWekHny0Lq4waAuOKzWUlhNxoy1gcRTkJDvhHJH8CNakY8nFsaWMoHQbfsc3lIEKTdlPwrRh1fExPW6rSUjg+BgQAIAiLIgNMEppr6gEAAAAZAAAAECi1L/0gEIEAAAoAAAkABG1hcHMKAAAAAAA=",
+  "locked": 1615851784994
+}
+⚠️ worldBytes is Base64 encoded!
+Response: 200 OK
+```
+## Delete World
+```
+Endpoint: /deleteWorld
+Method: POST
+Query parameters: worldName (string)
+Usage: http://api.example.com/deleteWorld?worldName=exampleworld1
+Response: 200 OK
+```
+## Update Session Lock
+```
+Endpoint: /updateLock
+Method: POST
+Query parameters: worldName (string), time (long in milliseconds)
+Usage: http://api.example.com/updateLock?worldName=exampleworld1&time=1615851784994
+Response: 200 OK
+```
+## Unlock World
+```
+Endpoint: /unlockWorld
+Method: POST
+Query parameters: worldName (string)
+Usage: http://api.example.com/unlockWorld?worldName=exampleworld1
+Response: 200 OK
+```
+## Is World Locked
+```
+Endpoint: /isWorldLocked
+Method: GET
+Query parameters: worldName (string)
+Usage: http://api.example.com/isWorldLocked?worldName=exampleworld1
+Response: 200 OK (boolean in number)
+1 if locked
+0 if not
+```
+
+# Planned features
+* Expand to multiple databases (MySQL and Local file)
+* Release a plugin which utilizes this application
