@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SkyBlockWebAPI": {
+    "SlimeWorldWebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",
