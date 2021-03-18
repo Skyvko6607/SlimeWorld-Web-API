@@ -1,9 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SlimeWorldWebAPI.DTO;
+using SlimeWorldWebAPI.Exceptions;
 using SlimeWorldWebAPI.Filters;
 using SlimeWorldWebAPI.Services.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace SlimeWorldWebAPI.Controllers
 {
@@ -25,13 +26,28 @@ namespace SlimeWorldWebAPI.Controllers
                 return BadRequest();
             }
 
-            var slimeWorld = await SlimeWorldService.GetWorldByName(worldName);
-            if (slimeWorld == null)
+            Console.WriteLine("Requesting world " + worldName);
+            try
             {
+                var slimeWorld = await SlimeWorldService.GetWorldByName(worldName);
+                if (slimeWorld == null)
+                {
+                    Console.WriteLine("World not found " + worldName);
+                    return BadRequest();
+                }
+                Console.WriteLine("Successfully requested world " + worldName);
+                return Ok(slimeWorld);
+            }
+            catch (WorldProcessingException)
+            {
+                Console.WriteLine("World in processing " + worldName);
+                return Conflict();
+            }
+            catch (UnknownWorldException)
+            {
+                Console.WriteLine("World not found " + worldName);
                 return BadRequest();
             }
-
-            return Ok(slimeWorld);
         }
 
         [HttpGet("getWorldNames")]
@@ -148,6 +164,23 @@ namespace SlimeWorldWebAPI.Controllers
 
         [HttpGet("isWorldLocked")]
         public async Task<IActionResult> IsWorldLocked(string worldName)
+        {
+            if (worldName == null)
+            {
+                return BadRequest();
+            }
+
+            var slimeWorld = await SlimeWorldService.GetWorldByName(worldName);
+            if (slimeWorld == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(slimeWorld.Locked);
+        }
+
+        [HttpGet("getWorldLockTime")]
+        public async Task<IActionResult> GetWorldLockTime(string worldName)
         {
             if (worldName == null)
             {

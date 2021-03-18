@@ -45,3 +45,4 @@ F:\ASP.NET\WebAPI\SlimeWorldWebAPI\SlimeWorldWebAPI\obj\Release\netcoreapp3.1\Sl
 F:\ASP.NET\WebAPI\SlimeWorldWebAPI\SlimeWorldWebAPI\obj\Release\netcoreapp3.1\SlimeWorldWebAPI.dll
 F:\ASP.NET\WebAPI\SlimeWorldWebAPI\SlimeWorldWebAPI\obj\Release\netcoreapp3.1\SlimeWorldWebAPI.pdb
 F:\ASP.NET\WebAPI\SlimeWorldWebAPI\SlimeWorldWebAPI\obj\Release\netcoreapp3.1\SlimeWorldWebAPI.genruntimeconfig.cache
+F:\ASP.NET\WebAPI\SlimeWorldWebAPI\SlimeWorldWebAPI\obj\Release\netcoreapp3.1\SlimeWorldWebAPI.csprojAssemblyReference.cache

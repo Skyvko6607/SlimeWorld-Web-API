@@ -7,5 +7,6 @@ namespace SlimeWorldWebAPI.DataObjects
     {
         public ConcurrentDictionary<string, SlimeWorld> SlimeWorlds { get; set; } = new ConcurrentDictionary<string, SlimeWorld>();
         public ConcurrentDictionary<string, SlimeWorld> SlimeWorldsDelayedSave { get; set; } = new ConcurrentDictionary<string, SlimeWorld>();
+        public ConcurrentDictionary<string, long> SlimeWorldsProcessing { get; set; } = new ConcurrentDictionary<string, long>();
     }
 }

@@ -161,6 +161,13 @@ namespace SlimeWorldWebAPI.Repositories
                 return null;
             }
 
+            if (_slimeWorldDataObject.SlimeWorldsProcessing.ContainsKey(worldName) &&
+                DateTime.Now.CompareTo(
+                    TimeSpan.FromMilliseconds(_slimeWorldDataObject.SlimeWorldsProcessing[worldName]).Add(TimeSpan.FromMinutes(1))) != -1)
+            {
+                throw new WorldProcessingException();
+            }
+
             var slimeWorld = _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName).Value;
             if (slimeWorld != null)
             {
@@ -188,6 +195,14 @@ namespace SlimeWorldWebAPI.Repositories
                 Locked = query["locked"].AsInt64
             };
 
+            var slimeWorldFromList =
+                _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName)
+                    .Value; // If another call loaded it, then don't load this one
+            if (slimeWorldFromList != null)
+            {
+                return null;
+            }
+
             _slimeWorldDataObject.SlimeWorlds.AddOrUpdate(worldName, s => slimeWorld, (s, world) => slimeWorld);
             return slimeWorld;
         }
@@ -205,9 +220,13 @@ namespace SlimeWorldWebAPI.Repositories
                 throw new WorldAlreadyExistException(worldName);
             }
 
+            _slimeWorldDataObject.SlimeWorldsProcessing.AddOrUpdate(worldName, s => DateTime.Now.Millisecond,
+                (s, l) => DateTime.Now.Millisecond);
+
             var query = await DbContext.GetOneByQueryAsync(collection, new BsonDocument("name", worldName));
             if (query != null)
             {
+                _slimeWorldDataObject.SlimeWorldsProcessing.TryRemove(worldName, out _);
                 throw new WorldAlreadyExistException(worldName);
             }
 
@@ -218,9 +237,19 @@ namespace SlimeWorldWebAPI.Repositories
                 Locked = time
             };
 
+            var slimeWorldFromList =
+                _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName)
+                    .Value; // If another call loaded it, then don't load this one
+            if (slimeWorldFromList != null)
+            {
+                return null;
+            }
+
             _slimeWorldDataObject.SlimeWorlds.AddOrUpdate(worldName, s => slimeWorld, (s, world) => slimeWorld);
             _slimeWorldDataObject.SlimeWorldsDelayedSave.AddOrUpdate(worldName, s => slimeWorld,
                 (s, world) => slimeWorld);
+
+            _slimeWorldDataObject.SlimeWorldsProcessing.TryRemove(worldName, out _);
 
             return slimeWorld;
         }
@@ -236,9 +265,12 @@ namespace SlimeWorldWebAPI.Repositories
             var slimeWorld = _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName).Value;
             if (slimeWorld == null)
             {
+                _slimeWorldDataObject.SlimeWorldsProcessing.AddOrUpdate(worldName, s => DateTime.Now.Millisecond,
+                    (s, l) => DateTime.Now.Millisecond);
                 var query = await DbContext.GetOneByQueryAsync(collection, new BsonDocument("name", worldName));
                 if (query == null)
                 {
+                    _slimeWorldDataObject.SlimeWorldsProcessing.TryRemove(worldName, out _);
                     return await InsertWorldByNameAsync(worldName, worldBytes, time);
                 }
 
@@ -256,6 +288,10 @@ namespace SlimeWorldWebAPI.Repositories
                     Locked = query["locked"].AsInt64
                 };
             }
+            else
+            {
+                _slimeWorldDataObject.SlimeWorldsProcessing.TryAdd(worldName, DateTime.Now.Millisecond);
+            }
 
             slimeWorld.LastUpdate = new DateTime();
 
@@ -264,6 +300,8 @@ namespace SlimeWorldWebAPI.Repositories
             _slimeWorldDataObject.SlimeWorlds.AddOrUpdate(worldName, s => slimeWorld, (s, world) => slimeWorld);
             _slimeWorldDataObject.SlimeWorldsDelayedSave.AddOrUpdate(worldName, s => slimeWorld,
                 (s, world) => slimeWorld);
+
+            _slimeWorldDataObject.SlimeWorldsProcessing.TryRemove(worldName, out _);
 
             return slimeWorld;
         }
@@ -276,9 +314,29 @@ namespace SlimeWorldWebAPI.Repositories
                 return;
             }
 
-            await DbContext.DeleteOneAsync(collection, new BsonDocument("name", worldName));
             _slimeWorldDataObject.SlimeWorlds.TryRemove(worldName, out _);
             _slimeWorldDataObject.SlimeWorldsDelayedSave.TryRemove(worldName, out _);
+            var bucket = new GridFSBucket(DbContext.MongoDatabase, new GridFSBucketOptions
+            {
+                BucketName = "worlds"
+            });
+            try
+            {
+                await bucket.DeleteAsync(worldName, CancellationToken.None);
+            }
+            catch
+            {
+                // ignored
+            }
+            try
+            {
+                await DbContext.DeleteOneAsync(collection, new BsonDocument("name", worldName));
+            }
+            catch
+            {
+                // ignored
+            }
+
         }
 
         public async Task SaveChangesAsync()
