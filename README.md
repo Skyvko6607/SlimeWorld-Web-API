@@ -26,7 +26,7 @@ Considering that every server opens 14 pools for every connection, it can use a 
 * Running the project (Linux):
   * Install DOTNET SDK package:
     * wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-      sudo dpkg -i packages-microsoft-prod.deb
+    * sudo dpkg -i packages-microsoft-prod.deb
     * sudo apt-get update; \
       sudo apt-get install -y apt-transport-https && \
       sudo apt-get update && \
