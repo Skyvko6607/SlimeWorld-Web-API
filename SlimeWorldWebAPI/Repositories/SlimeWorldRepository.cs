@@ -161,50 +161,66 @@ namespace SlimeWorldWebAPI.Repositories
                 return null;
             }
 
-            if (_slimeWorldDataObject.SlimeWorldsProcessing.ContainsKey(worldName) &&
-                DateTime.Now.CompareTo(
-                    TimeSpan.FromMilliseconds(_slimeWorldDataObject.SlimeWorldsProcessing[worldName]).Add(TimeSpan.FromMinutes(1))) != -1)
+            if (_slimeWorldDataObject.SlimeWorldsProcessing.ContainsKey(worldName))
             {
                 throw new WorldProcessingException();
             }
+            // if (_slimeWorldDataObject.SlimeWorldsProcessing.ContainsKey(worldName) &&
+            //     DateTime.Now.CompareTo(
+            //         TimeSpan.FromMilliseconds(_slimeWorldDataObject.SlimeWorldsProcessing[worldName]).Add(TimeSpan.FromMinutes(1))) != -1)
+            // {
+            //     throw new WorldProcessingException();
+            // }
 
-            var slimeWorld = _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName).Value;
-            if (slimeWorld != null)
+            _slimeWorldDataObject.SlimeWorldsProcessing.AddOrUpdate(worldName, s => DateTime.Now.Millisecond,
+                (s, l) => DateTime.Now.Millisecond);
+
+            try
             {
-                slimeWorld.LastUpdate = new DateTime();
+                var slimeWorld = _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName).Value;
+                if (slimeWorld != null)
+                {
+                    slimeWorld.LastUpdate = new DateTime();
+                    return slimeWorld;
+                }
+
+                var query = await DbContext.GetOneByQueryAsync(collection, new BsonDocument("name", worldName));
+                if (query == null)
+                {
+                    throw new UnknownWorldException(worldName);
+                }
+
+                var bucket = new GridFSBucket(DbContext.MongoDatabase, new GridFSBucketOptions
+                {
+                    BucketName = "worlds"
+                });
+                var bytes = await bucket.DownloadAsBytesByNameAsync(worldName);
+
+                slimeWorld = new SlimeWorld
+                {
+                    Id = query["_id"].AsObjectId,
+                    Name = query["name"].AsString,
+                    WorldBytes = bytes,
+                    Locked = query["locked"].AsInt64
+                };
+
+                var slimeWorldFromList =
+                    _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName)
+                        .Value; // If another call loaded it, then don't load this one
+                if (slimeWorldFromList != null)
+                {
+                    return null;
+                }
+
+                _slimeWorldDataObject.SlimeWorlds.AddOrUpdate(worldName, s => slimeWorld, (s, world) => slimeWorld);
                 return slimeWorld;
             }
-
-            var query = await DbContext.GetOneByQueryAsync(collection, new BsonDocument("name", worldName));
-            if (query == null)
+            finally
             {
-                throw new UnknownWorldException(worldName);
+                _slimeWorldDataObject.SlimeWorldsProcessing.TryRemove(worldName, out _);
             }
 
-            var bucket = new GridFSBucket(DbContext.MongoDatabase, new GridFSBucketOptions
-            {
-                BucketName = "worlds"
-            });
-            var bytes = await bucket.DownloadAsBytesByNameAsync(worldName);
-
-            slimeWorld = new SlimeWorld
-            {
-                Id = query["_id"].AsObjectId,
-                Name = query["name"].AsString,
-                WorldBytes = bytes,
-                Locked = query["locked"].AsInt64
-            };
-
-            var slimeWorldFromList =
-                _slimeWorldDataObject.SlimeWorlds.FirstOrDefault(pair => pair.Key == worldName)
-                    .Value; // If another call loaded it, then don't load this one
-            if (slimeWorldFromList != null)
-            {
-                return null;
-            }
-
-            _slimeWorldDataObject.SlimeWorlds.AddOrUpdate(worldName, s => slimeWorld, (s, world) => slimeWorld);
-            return slimeWorld;
+            return null;
         }
 
         public async Task<SlimeWorld> InsertWorldByNameAsync(string worldName, byte[] worldBytes, long time)
